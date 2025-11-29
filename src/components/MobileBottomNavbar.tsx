@@ -1,7 +1,77 @@
+import { useState } from 'react';
+import { FaFile, FaPlus, FaRegNewspaper } from 'react-icons/fa';
+import { FaFileCirclePlus } from 'react-icons/fa6';
+import { HiNewspaper } from 'react-icons/hi';
+import { IoHome } from 'react-icons/io5';
+import { MdReport } from 'react-icons/md';
+
 const MobileBottomNavbar = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isCollapsed, setCollapsed] = useState(true);
+  const navRoutes = [
+    { path: '#', label: 'home', icon: <IoHome /> },
+    { path: '#', label: 'news ', icon: <FaRegNewspaper /> },
+    {
+      icon: <FaPlus />,
+      children: [
+        { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },
+        { path: '#', label: 'add news', icon: <HiNewspaper /> },
+      ],
+    },
+    { path: '#', label: 'projects', icon: <FaFile /> },
+    { path: '#', label: 'reports', icon: <MdReport /> },
+  ];
   return (
-    <div className="py-3 px-2 bg-white/20 backdrop-blur-md border-t border-gray-100">
-      MobileBottomNavbar
+    <div className="py-3 px-2 bg-white/65 h-[90px] backdrop-blur-md border-t border-gray-100 flex justify-around items-center">
+      {navRoutes.map((route, index) =>
+        !route.children ? (
+          <div
+            className="flex flex-col items-center cursor-pointer text-gray-600"
+            onClick={() => setSelectedIndex(index)}
+          >
+            <div
+              className={`w-9 h-9 rounded-full shadow text-xl flex justify-center items-center ${
+                index === selectedIndex
+                  ? 'bg-green-200/20 text-green-800'
+                  : 'bg-white/40'
+              } transition-colors`}
+            >
+              {route.icon}
+            </div>
+            <p className="text-sm font-semibold">{route.label}</p>
+          </div>
+        ) : (
+          <div className="self-start relative">
+            <div
+              onClick={() => setCollapsed(!isCollapsed)}
+              className={`${
+                !isCollapsed
+                  ? 'transform-[scale(1.1)_rotate(45deg)]'
+                  : 'transform-[rotate(0)]'
+              } cursor-pointer w-12 h-12 rounded-full flex justify-center items-center text-white bg-green-700 transition-transform `}
+            >
+              {route.icon}
+            </div>
+            <ul className="absolute bottom-20 -left-12">
+              {route.children.map((child) => (
+                <li
+                  className={`shadow-md rounded-3xl bg-white w-44 cursor-pointer hover:transform-[scale(1.1)] ${
+                    isCollapsed ? 'h-0 overflow-hidden p-0' : 'h-fit p-1 mb-3'
+                  } transition-[height_0.3s_padding_0.3s]`}
+                >
+                  <div className="flex items-center">
+                    {' '}
+                    <span className="inline-flex w-10 h-10 justify-center items-center rounded-full bg-green-900 text-white mr-1">
+                      {child.icon}
+                    </span>
+                    <p>{child.label}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      )}
     </div>
   );
 };
