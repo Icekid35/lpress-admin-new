@@ -12,10 +12,10 @@ const Layout = () => {
       </div>
 
       {/* Mobile view */}
-      <div className="fixed top-0 left-0 right-0 lg:hidden">
+      <div className="fixed top-0 left-0 right-0 lg:hidden z-10">
         <MobileTopbar />
       </div>
-      <div className="fixed bottom-0 left-0 right-0 lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 lg:hidden z-10">
         <MobileBottomNavbar />
       </div>
       <div className="lg:ml-[290px]">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaFile, FaRegNewspaper } from 'react-icons/fa';
-import { FaFileCirclePlus, FaX } from 'react-icons/fa6';
+import { FaFileCirclePlus } from 'react-icons/fa6';
 import { HiNewspaper } from 'react-icons/hi';
 import { IoHome } from 'react-icons/io5';
 import { MdReport } from 'react-icons/md';
@@ -12,7 +12,7 @@ const DesktopSidebar = () => {
     { path: '#', label: 'home', icon: <IoHome /> },
     { path: '#', label: 'news management', icon: <FaRegNewspaper /> },
     { path: '#', label: 'projects', icon: <FaFile /> },
-    { path: '#', label: 'reports', icon: <MdReport /> },
+    { path: '#', label: 'complaints', icon: <MdReport /> },
     { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },
     { path: '#', label: 'add news', icon: <HiNewspaper /> },
   ];
@@ -33,6 +33,7 @@ const DesktopSidebar = () => {
       <div className="py-5 px-2">
         {navRoutes.map((route, index) => (
           <div
+            key={index}
             className={`flex items-center mb-3 py-3 px-2 rounded-sm cursor-pointer ${
               selectedIndex === index && 'bg-gray-300'
             } hover:bg-gray-200 transition-colors duration-200`}

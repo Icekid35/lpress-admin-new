@@ -1,131 +1,126 @@
+import {
+  MdArticle,
+  MdConstruction,
+  MdEmail,
+  MdReportProblem,
+} from 'react-icons/md';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableFooter,
+} from '@/components/ui/table';
+import { Link } from 'react-router';
+
 const HomePage = () => {
+  const analytics = [
+    {
+      id: 'subscribers',
+      header: 'Newsletter Subscribers',
+      value: 0,
+      icon: <MdEmail />,
+      shade: 'bg-green-100/80',
+      text: 'text-green-800',
+      iconColor: 'text-green-900',
+    },
+    {
+      id: 'projects',
+      header: 'Projects in Progress',
+      value: 0,
+      icon: <MdConstruction />,
+      shade: 'bg-purple-100',
+      text: 'text-purple-800',
+      iconColor: 'text-purple-900',
+    },
+    {
+      id: 'news',
+      header: 'Published News',
+      value: 0,
+      icon: <MdArticle />,
+      shade: 'bg-indigo-100',
+      text: 'text-indigo-800',
+      iconColor: 'text-indigo-900',
+    },
+    {
+      id: 'complaints',
+      header: 'User Complaints',
+      value: 0,
+      icon: <MdReportProblem />,
+      shade: 'bg-amber-100',
+      text: 'text-amber-800',
+      iconColor: 'text-amber-900',
+    },
+  ];
+
+  const complaints = [
+    {
+      id: 1,
+      name: 'John Doe',
+      email: 'john@example.com',
+      subject: 'Broken project link',
+      date: '2025-11-29',
+    },
+    {
+      id: 2,
+      name: 'Jane Smith',
+      email: 'jane@example.com',
+      subject: 'Unable to login',
+      date: '2025-11-28',
+    },
+  ];
+
   return (
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit culpa dolorum
-      minus, harum neque impedit porro suscipit sint magnam sed non vel omnis.
-      Impedit ullam, commodi pariatur maiores magni exercitationem explicabo
-      reiciendis tenetur veritatis vero repellat autem voluptate sapiente
-      consectetur veniam neque, adipisci sit magnam perferendis est beatae
-      aspernatur dolor nesciunt repellendus! Ullam debitis quas perspiciatis
-      ratione eveniet fugiat accusamus voluptates! Nisi ad blanditiis, optio
-      consectetur, accusantium facere veritatis rerum tenetur voluptate odit
-      repellendus! Doloremque repellendus mollitia eveniet iste, officiis,
-      beatae repudiandae quaerat est repellat numquam deleniti quos dicta nobis
-      autem voluptates vero in. Quod fuga, iste neque aperiam dolores illum nemo
-      reiciendis, necessitatibus, consequuntur aut earum. Iure esse aut voluptas
-      est sapiente, id natus qui sint modi quas, quae ullam nihil molestias ut!
-      Ipsa, iste dolores dolorem, odit excepturi hic eaque voluptas laudantium
-      aliquid, reiciendis distinctio delectus illo. Quam necessitatibus ipsam
-      saepe odio culpa animi laborum molestiae vero dolorem! Expedita, quos
-      corrupti voluptas animi fugiat quae qui similique rerum tempora nihil
-      velit dicta eos debitis explicabo nostrum voluptate saepe cupiditate unde
-      nulla, fugit consequuntur. Laboriosam veniam quia asperiores magni porro
-      nesciunt deserunt laborum! Iure doloremque ex reprehenderit rerum mollitia
-      hic ipsam obcaecati, nam cupiditate! Iste facilis excepturi quos nisi odio
-      dolorum corrupti quas vero ducimus ipsa, fuga corporis. Id natus alias
-      laborum saepe excepturi eligendi! Corporis vitae suscipit at ipsa. Fugiat
-      accusamus qui nulla ipsum iure. Aspernatur fugit animi libero voluptas
-      doloremque quae, maxime hic officiis eveniet dicta ratione! Consectetur
-      sequi ex repellat doloribus! Libero ullam voluptas itaque autem ipsam
-      doloremque nihil maxime qui! Corrupti ipsa ducimus repellendus dolores
-      repellat, sunt reprehenderit unde quisquam ut fugiat cumque voluptates
-      minima, incidunt quos nam aut. Quisquam id, quo facilis, alias fugiat cum
-      provident nostrum eius adipisci, eligendi temporibus quae doloremque
-      obcaecati natus quas? Eum sapiente inventore dignissimos unde, expedita ex
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit culpa dolorum
-      minus, harum neque impedit porro suscipit sint magnam sed non vel omnis.
-      Impedit ullam, commodi pariatur maiores magni exercitationem explicabo
-      reiciendis tenetur veritatis vero repellat autem voluptate sapiente
-      consectetur veniam neque, adipisci sit magnam perferendis est beatae
-      aspernatur dolor nesciunt repellendus! Ullam debitis quas perspiciatis
-      ratione eveniet fugiat accusamus voluptates! Nisi ad blanditiis, optio
-      consectetur, accusantium facere veritatis rerum tenetur voluptate odit
-      repellendus! Doloremque repellendus mollitia eveniet iste, officiis,
-      beatae repudiandae quaerat est repellat numquam deleniti quos dicta nobis
-      autem voluptates vero in. Quod fuga, iste neque aperiam dolores illum nemo
-      reiciendis, necessitatibus, consequuntur aut earum. Iure esse aut voluptas
-      est sapiente, id natus qui sint modi quas, quae ullam nihil molestias ut!
-      Ipsa, iste dolores dolorem, odit excepturi hic eaque voluptas laudantium
-      aliquid, reiciendis distinctio delectus illo. Quam necessitatibus ipsam
-      saepe odio culpa animi laborum molestiae vero dolorem! Expedita, quos
-      corrupti voluptas animi fugiat quae qui similique rerum tempora nihil
-      velit dicta eos debitis explicabo nostrum voluptate saepe cupiditate unde
-      nulla, fugit consequuntur. Laboriosam veniam quia asperiores magni porro
-      nesciunt deserunt laborum! Iure doloremque ex reprehenderit rerum mollitia
-      hic ipsam obcaecati, nam cupiditate! Iste facilis excepturi quos nisi odio
-      dolorum corrupti quas vero ducimus ipsa, fuga corporis. Id natus alias
-      laborum saepe excepturi eligendi! Corporis vitae suscipit at ipsa. Fugiat
-      accusamus qui nulla ipsum iure. Aspernatur fugit animi libero voluptas
-      doloremque quae, maxime hic officiis eveniet dicta ratione! Consectetur
-      sequi ex repellat doloribus! Libero ullam voluptas itaque autem ipsam
-      doloremque nihil maxime qui! Corrupti ipsa ducimus repellendus dolores
-      repellat, sunt reprehenderit unde quisquam ut fugiat cumque voluptates
-      minima, incidunt quos nam aut. Quisquam id, quo facilis, alias fugiat cum
-      provident nostrum eius adipisci, eligendi temporibus quae doloremque
-      obcaecati natus quas? Eum sapiente inventore dignissimos unde, expedita ex
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit culpa dolorum
-      minus, harum neque impedit porro suscipit sint magnam sed non vel omnis.
-      Impedit ullam, commodi pariatur maiores magni exercitationem explicabo
-      reiciendis tenetur veritatis vero repellat autem voluptate sapiente
-      consectetur veniam neque, adipisci sit magnam perferendis est beatae
-      aspernatur dolor nesciunt repellendus! Ullam debitis quas perspiciatis
-      ratione eveniet fugiat accusamus voluptates! Nisi ad blanditiis, optio
-      consectetur, accusantium facere veritatis rerum tenetur voluptate odit
-      repellendus! Doloremque repellendus mollitia eveniet iste, officiis,
-      beatae repudiandae quaerat est repellat numquam deleniti quos dicta nobis
-      autem voluptates vero in. Quod fuga, iste neque aperiam dolores illum nemo
-      reiciendis, necessitatibus, consequuntur aut earum. Iure esse aut voluptas
-      est sapiente, id natus qui sint modi quas, quae ullam nihil molestias ut!
-      Ipsa, iste dolores dolorem, odit excepturi hic eaque voluptas laudantium
-      aliquid, reiciendis distinctio delectus illo. Quam necessitatibus ipsam
-      saepe odio culpa animi laborum molestiae vero dolorem! Expedita, quos
-      corrupti voluptas animi fugiat quae qui similique rerum tempora nihil
-      velit dicta eos debitis explicabo nostrum voluptate saepe cupiditate unde
-      nulla, fugit consequuntur. Laboriosam veniam quia asperiores magni porro
-      nesciunt deserunt laborum! Iure doloremque ex reprehenderit rerum mollitia
-      hic ipsam obcaecati, nam cupiditate! Iste facilis excepturi quos nisi odio
-      dolorum corrupti quas vero ducimus ipsa, fuga corporis. Id natus alias
-      laborum saepe excepturi eligendi! Corporis vitae suscipit at ipsa. Fugiat
-      accusamus qui nulla ipsum iure. Aspernatur fugit animi libero voluptas
-      doloremque quae, maxime hic officiis eveniet dicta ratione! Consectetur
-      sequi ex repellat doloribus! Libero ullam voluptas itaque autem ipsam
-      doloremque nihil maxime qui! Corrupti ipsa ducimus repellendus dolores
-      repellat, sunt reprehenderit unde quisquam ut fugiat cumque voluptates
-      minima, incidunt quos nam aut. Quisquam id, quo facilis, alias fugiat cum
-      provident nostrum eius adipisci, eligendi temporibus quae doloremque
-      obcaecati natus quas? Eum sapiente inventore dignissimos unde, expedita ex
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit culpa dolorum
-      minus, harum neque impedit porro suscipit sint magnam sed non vel omnis.
-      Impedit ullam, commodi pariatur maiores magni exercitationem explicabo
-      reiciendis tenetur veritatis vero repellat autem voluptate sapiente
-      consectetur veniam neque, adipisci sit magnam perferendis est beatae
-      aspernatur dolor nesciunt repellendus! Ullam debitis quas perspiciatis
-      ratione eveniet fugiat accusamus voluptates! Nisi ad blanditiis, optio
-      consectetur, accusantium facere veritatis rerum tenetur voluptate odit
-      repellendus! Doloremque repellendus mollitia eveniet iste, officiis,
-      beatae repudiandae quaerat est repellat numquam deleniti quos dicta nobis
-      autem voluptates vero in. Quod fuga, iste neque aperiam dolores illum nemo
-      reiciendis, necessitatibus, consequuntur aut earum. Iure esse aut voluptas
-      est sapiente, id natus qui sint modi quas, quae ullam nihil molestias ut!
-      Ipsa, iste dolores dolorem, odit excepturi hic eaque voluptas laudantium
-      aliquid, reiciendis distinctio delectus illo. Quam necessitatibus ipsam
-      saepe odio culpa animi laborum molestiae vero dolorem! Expedita, quos
-      corrupti voluptas animi fugiat quae qui similique rerum tempora nihil
-      velit dicta eos debitis explicabo nostrum voluptate saepe cupiditate unde
-      nulla, fugit consequuntur. Laboriosam veniam quia asperiores magni porro
-      nesciunt deserunt laborum! Iure doloremque ex reprehenderit rerum mollitia
-      hic ipsam obcaecati, nam cupiditate! Iste facilis excepturi quos nisi odio
-      dolorum corrupti quas vero ducimus ipsa, fuga corporis. Id natus alias
-      laborum saepe excepturi eligendi! Corporis vitae suscipit at ipsa. Fugiat
-      accusamus qui nulla ipsum iure. Aspernatur fugit animi libero voluptas
-      doloremque quae, maxime hic officiis eveniet dicta ratione! Consectetur
-      sequi ex repellat doloribus! Libero ullam voluptas itaque autem ipsam
-      doloremque nihil maxime qui! Corrupti ipsa ducimus repellendus dolores
-      repellat, sunt reprehenderit unde quisquam ut fugiat cumque voluptates
-      minima, incidunt quos nam aut. Quisquam id, quo facilis, alias fugiat cum
-      provident nostrum eius adipisci, eligendi temporibus quae doloremque
-      obcaecati natus quas? Eum sapiente inventore dignissimos unde, expedita ex
-      minima!
+    <div className="pt-20 px-4 lg:pt-12">
+      <div className="grid mb-10 gap-7 grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
+        {analytics.map(
+          ({ header, icon, shade, text, iconColor, value, id }) => (
+            <div
+              key={id}
+              className={`shadow ${shade} p-3 rounded-xl flex flex-col items-center justify-center`}
+            >
+              <div className="flex flex-col items-center justify-center">
+                <span
+                  className={`inline-flex w-14 h-14 text-2xl mb-2 rounded-full justify-center ${iconColor} items-center bg-gray-50/70 backdrop-blur-md`}
+                >
+                  {icon}
+                </span>
+                <h2 className={`font-semibold text-lg ${text}`}>{header}</h2>
+              </div>
+              <p className={`${text} font-semibold text-2xl`}>{value}</p>
+            </div>
+          )
+        )}
+      </div>
+      <div className="mb-16">
+        <h2 className="text-2xl font-semibold text-green-900">
+          User Complaints
+        </h2>
+        <Table>
+          <TableCaption>Recent complaints.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Subject</TableHead>
+              <TableHead className="text-right">Date</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {complaints.map(({ name, id, subject, date, email }) => (
+              <TableRow key={id}>
+                <TableCell className="font-medium">{name}</TableCell>
+                <TableCell>{email}</TableCell>
+                <TableCell>{subject}</TableCell>
+                <TableCell className="text-right">{date}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

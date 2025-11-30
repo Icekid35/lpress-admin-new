@@ -19,18 +19,19 @@ const MobileBottomNavbar = () => {
       ],
     },
     { path: '#', label: 'projects', icon: <FaFile /> },
-    { path: '#', label: 'reports', icon: <MdReport /> },
+    { path: '#', label: 'complaints', icon: <MdReport /> },
   ];
   return (
-    <div className="py-3 px-2 bg-white/65 h-[90px] backdrop-blur-md border-t border-gray-100 flex justify-around items-center">
+    <div className="py-3 px-2 bg-white/65 h-[850x] backdrop-blur-md border-t border-gray-100 flex justify-around items-center">
       {navRoutes.map((route, index) =>
         !route.children ? (
           <div
+            key={index}
             className="flex flex-col items-center cursor-pointer text-gray-600"
             onClick={() => setSelectedIndex(index)}
           >
             <div
-              className={`w-9 h-9 rounded-full shadow text-xl flex justify-center items-center ${
+              className={`w-9 h-9 rounded-full shadow text-xl flex justify-center items-center mb-1 ${
                 index === selectedIndex
                   ? 'bg-green-200/20 text-green-800'
                   : 'bg-white/40'
@@ -38,10 +39,12 @@ const MobileBottomNavbar = () => {
             >
               {route.icon}
             </div>
-            <p className="text-sm font-semibold">{route.label}</p>
+            <p className="text-[11px] font-semibold sm:text-lg">
+              {route.label}
+            </p>
           </div>
         ) : (
-          <div className="self-start relative">
+          <div className="self-start relative" key={index}>
             <div
               onClick={() => setCollapsed(!isCollapsed)}
               className={`${
@@ -53,8 +56,9 @@ const MobileBottomNavbar = () => {
               {route.icon}
             </div>
             <ul className="absolute bottom-20 -left-12">
-              {route.children.map((child) => (
+              {route.children.map((child, childIndex) => (
                 <li
+                  key={childIndex}
                   className={`shadow-md rounded-3xl bg-white w-44 cursor-pointer hover:transform-[scale(1.1)] ${
                     isCollapsed ? 'h-0 overflow-hidden p-0' : 'h-fit p-1 mb-3'
                   } transition-[height_0.3s_padding_0.3s]`}
