@@ -4,12 +4,13 @@ import { FaFileCirclePlus } from 'react-icons/fa6';
 import { HiNewspaper } from 'react-icons/hi';
 import { IoHome } from 'react-icons/io5';
 import { MdReport } from 'react-icons/md';
+import { Link, useLocation } from 'react-router';
 
 const MobileBottomNavbar = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { pathname } = useLocation();
   const [isCollapsed, setCollapsed] = useState(true);
   const navRoutes = [
-    { path: '#', label: 'home', icon: <IoHome /> },
+    { path: '/', label: 'home', icon: <IoHome /> },
     { path: '#', label: 'news ', icon: <FaRegNewspaper /> },
     {
       icon: <FaPlus />,
@@ -19,30 +20,28 @@ const MobileBottomNavbar = () => {
       ],
     },
     { path: '#', label: 'projects', icon: <FaFile /> },
-    { path: '#', label: 'complaints', icon: <MdReport /> },
+    { path: '/complaints', label: 'complaints', icon: <MdReport /> },
   ];
   return (
     <div className="py-3 px-2 bg-white/65 h-[850x] backdrop-blur-md border-t border-gray-100 flex justify-around items-center">
       {navRoutes.map((route, index) =>
         !route.children ? (
-          <div
-            key={index}
-            className="flex flex-col items-center cursor-pointer text-gray-600"
-            onClick={() => setSelectedIndex(index)}
-          >
-            <div
-              className={`w-9 h-9 rounded-full shadow text-xl flex justify-center items-center mb-1 ${
-                index === selectedIndex
-                  ? 'bg-green-200/20 text-green-800'
-                  : 'bg-white/40'
-              } transition-colors`}
-            >
-              {route.icon}
+          <Link to={route.path} key={index}>
+            <div className="flex flex-col items-center cursor-pointer text-gray-600">
+              <div
+                className={`w-9 h-9 rounded-full shadow text-xl flex justify-center items-center mb-1 ${
+                  pathname === route.path
+                    ? 'bg-green-200/20 text-green-800'
+                    : 'bg-white/40'
+                } transition-colors`}
+              >
+                {route.icon}
+              </div>
+              <p className="text-[11px] font-semibold sm:text-lg">
+                {route.label}
+              </p>
             </div>
-            <p className="text-[11px] font-semibold sm:text-lg">
-              {route.label}
-            </p>
-          </div>
+          </Link>
         ) : (
           <div className="self-start relative" key={index}>
             <div

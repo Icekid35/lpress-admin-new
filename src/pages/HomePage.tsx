@@ -1,9 +1,14 @@
+import { Button } from '@/components/ui/button';
 import {
-  MdArticle,
-  MdConstruction,
-  MdEmail,
-  MdReportProblem,
-} from 'react-icons/md';
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import {
   Table,
   TableBody,
@@ -12,11 +17,19 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  TableFooter,
 } from '@/components/ui/table';
+import { useState } from 'react';
+import {
+  MdArticle,
+  MdConstruction,
+  MdEmail,
+  MdReportProblem,
+} from 'react-icons/md';
 import { Link } from 'react-router';
 
 const HomePage = () => {
+  const [open, setOpen] = useState(false);
+
   const analytics = [
     {
       id: 'subscribers',
@@ -74,7 +87,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="pt-20 px-4 lg:pt-12">
+    <div className="px-4">
       <div className="grid mb-10 gap-7 grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
         {analytics.map(
           ({ header, icon, shade, text, iconColor, value, id }) => (
@@ -99,27 +112,70 @@ const HomePage = () => {
         <h2 className="text-2xl font-semibold text-green-900">
           User Complaints
         </h2>
-        <Table>
-          <TableCaption>Recent complaints.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Subject</TableHead>
-              <TableHead className="text-right">Date</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {complaints.map(({ name, id, subject, date, email }) => (
-              <TableRow key={id}>
-                <TableCell className="font-medium">{name}</TableCell>
-                <TableCell>{email}</TableCell>
-                <TableCell>{subject}</TableCell>
-                <TableCell className="text-right">{date}</TableCell>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Are you sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. The record will be permanently
+                deleted.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button
+                variant="destructive"
+                onClick={() => {
+                  setOpen(false);
+                }}
+                type="submit"
+              >
+                Delete
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+
+          <Table>
+            <TableCaption>
+              Recent complaints.{' '}
+              <Link className="text-green-700 hover:underline" to="/complaints">
+                see more
+              </Link>
+            </TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Subject</TableHead>
+                <TableHead className="text-right">Date</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {complaints.map(({ name, id, subject, date, email }) => (
+                <TableRow key={id}>
+                  <TableCell className="font-medium">{name}</TableCell>
+                  <TableCell>{email}</TableCell>
+                  <TableCell>{subject}</TableCell>
+                  <TableCell className="text-right">{date}</TableCell>
+                  <TableCell className="text-right">
+                    <Link to={`/complaints/${id}`} className="mr-1">
+                      <button className="py-2 px-3 rounded-md bg-green-700 hover:bg-green-900 transition-colors text-white cursor-pointer">
+                        expand
+                      </button>
+                    </Link>
+                    <DialogTrigger>
+                      <button className="bg-red-700 text-white rounded-md py-2 px-3 hover:bg-red-900 transition-colors cursor-pointer">
+                        Delete complaint
+                      </button>
+                    </DialogTrigger>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Dialog>
       </div>
     </div>
   );

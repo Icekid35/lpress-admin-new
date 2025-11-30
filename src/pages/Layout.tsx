@@ -18,7 +18,7 @@ const Layout = () => {
       <div className="fixed bottom-0 left-0 right-0 lg:hidden z-10">
         <MobileBottomNavbar />
       </div>
-      <div className="lg:ml-[290px]">
+      <div className="pt-24 lg:ml-[280px] lg:pt-10">
         <Outlet />
       </div>
     </div>

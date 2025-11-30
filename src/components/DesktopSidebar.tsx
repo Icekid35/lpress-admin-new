@@ -5,14 +5,15 @@ import { HiNewspaper } from 'react-icons/hi';
 import { IoHome } from 'react-icons/io5';
 import { MdReport } from 'react-icons/md';
 import nigerStateSeal from '../assets/niger-state-seal.jpg';
+import { Link, useLocation } from 'react-router';
 
 const DesktopSidebar = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { pathname } = useLocation();
   const navRoutes = [
-    { path: '#', label: 'home', icon: <IoHome /> },
+    { path: '/', label: 'home', icon: <IoHome /> },
     { path: '#', label: 'news management', icon: <FaRegNewspaper /> },
     { path: '#', label: 'projects', icon: <FaFile /> },
-    { path: '#', label: 'complaints', icon: <MdReport /> },
+    { path: '/complaints', label: 'complaints', icon: <MdReport /> },
     { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },
     { path: '#', label: 'add news', icon: <HiNewspaper /> },
   ];
@@ -32,20 +33,20 @@ const DesktopSidebar = () => {
       </div>
       <div className="py-5 px-2">
         {navRoutes.map((route, index) => (
-          <div
-            key={index}
-            className={`flex items-center mb-3 py-3 px-2 rounded-sm cursor-pointer ${
-              selectedIndex === index && 'bg-gray-300'
-            } hover:bg-gray-200 transition-colors duration-200`}
-            onClick={() => setSelectedIndex(index)}
-          >
-            <span className="inline-block mr-3 text-lg text-green-800">
-              {route.icon}
-            </span>
-            <p className="capitalize font-semibold text-green-950">
-              {route.label}
-            </p>
-          </div>
+          <Link to={route.path} key={index}>
+            <div
+              className={`flex items-center mb-3 py-3 px-2 rounded-sm cursor-pointer ${
+                pathname === route.path && 'bg-gray-300'
+              } hover:bg-gray-200 transition-colors duration-200`}
+            >
+              <span className="inline-block mr-3 text-lg text-green-800">
+                {route.icon}
+              </span>
+              <p className="capitalize font-semibold text-green-950">
+                {route.label}
+              </p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
