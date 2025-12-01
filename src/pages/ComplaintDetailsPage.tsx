@@ -11,10 +11,8 @@ const complaint = {
 };
 
 const ComplaintDetailsPage = () => {
-  const navigate = useNavigate();
-
   return (
-    <div className="px-4">
+    <div className="px-4 mb-28 lg:mb-3">
       <div className="max-w-sm shadow border rounded-2xl">
         <div className="p-3">
           <h1 className="font-semibold text-2xl text-green-950 mb-2 lg:text-3xl">

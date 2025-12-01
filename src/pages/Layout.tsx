@@ -1,9 +1,15 @@
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import DesktopSidebar from '../components/DesktopSidebar';
 import MobileBottomNavbar from '../components/MobileBottomNavbar';
 import MobileTopbar from '../components/MobileTopbar';
+import { useEffect } from 'react';
 
 const Layout = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
   return (
     <div className="selection:bg-blue-200">
       {/* Desktop view */}

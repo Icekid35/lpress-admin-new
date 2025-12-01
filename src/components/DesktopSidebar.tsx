@@ -1,17 +1,16 @@
-import { useState } from 'react';
 import { FaFile, FaRegNewspaper } from 'react-icons/fa';
 import { FaFileCirclePlus } from 'react-icons/fa6';
 import { HiNewspaper } from 'react-icons/hi';
 import { IoHome } from 'react-icons/io5';
 import { MdReport } from 'react-icons/md';
-import nigerStateSeal from '../assets/niger-state-seal.jpg';
 import { Link, useLocation } from 'react-router';
+import nigerStateSeal from '../assets/niger-state-seal.jpg';
 
 const DesktopSidebar = () => {
   const { pathname } = useLocation();
   const navRoutes = [
     { path: '/', label: 'home', icon: <IoHome /> },
-    { path: '#', label: 'news management', icon: <FaRegNewspaper /> },
+    { path: '/news', label: 'news management', icon: <FaRegNewspaper /> },
     { path: '#', label: 'projects', icon: <FaFile /> },
     { path: '/complaints', label: 'complaints', icon: <MdReport /> },
     { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },

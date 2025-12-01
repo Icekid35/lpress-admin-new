@@ -11,7 +11,7 @@ const MobileBottomNavbar = () => {
   const [isCollapsed, setCollapsed] = useState(true);
   const navRoutes = [
     { path: '/', label: 'home', icon: <IoHome /> },
-    { path: '#', label: 'news ', icon: <FaRegNewspaper /> },
+    { path: '/news', label: 'news ', icon: <FaRegNewspaper /> },
     {
       icon: <FaPlus />,
       children: [
