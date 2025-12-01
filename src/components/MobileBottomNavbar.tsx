@@ -19,7 +19,7 @@ const MobileBottomNavbar = () => {
         { path: '#', label: 'add news', icon: <HiNewspaper /> },
       ],
     },
-    { path: '#', label: 'projects', icon: <FaFile /> },
+    { path: '/projects', label: 'projects', icon: <FaFile /> },
     { path: '/complaints', label: 'complaints', icon: <MdReport /> },
   ];
   return (

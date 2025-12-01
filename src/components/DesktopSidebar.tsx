@@ -11,7 +11,7 @@ const DesktopSidebar = () => {
   const navRoutes = [
     { path: '/', label: 'home', icon: <IoHome /> },
     { path: '/news', label: 'news management', icon: <FaRegNewspaper /> },
-    { path: '#', label: 'projects', icon: <FaFile /> },
+    { path: '/projects', label: 'projects management', icon: <FaFile /> },
     { path: '/complaints', label: 'complaints', icon: <MdReport /> },
     { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },
     { path: '#', label: 'add news', icon: <HiNewspaper /> },

@@ -38,8 +38,8 @@ The article concludes here. We encourage readers to stay tuned for more updates.
           Kogi State Kicks Off the Implementation of Private Veterinary Practice
           Programme (PVP)
         </h1>
-        <div className="text-green-900 tracking-wider font-semibold">
-          <p className="mb-3">
+        <div className="text-gray-700 tracking-wider font-semibold">
+          <p className="mb-2">
             {date.toLocaleDateString('en-us', {
               year: 'numeric',
               month: 'long',

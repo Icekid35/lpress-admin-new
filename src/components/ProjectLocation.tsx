@@ -1,0 +1,18 @@
+import { FaLocationDot } from 'react-icons/fa6';
+
+interface Props {
+  location: { state: string; city: string };
+}
+
+const ProjectLocation = ({ location }: Props) => {
+  return (
+    <div className="flex items-center">
+      <span className="inline-block text-md mr-1 text-green-800">
+        <FaLocationDot />
+      </span>
+      <p>{`${location.city}, ${location.state} state`}</p>
+    </div>
+  );
+};
+
+export default ProjectLocation;
