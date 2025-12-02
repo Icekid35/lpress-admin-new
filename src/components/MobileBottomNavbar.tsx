@@ -16,7 +16,7 @@ const MobileBottomNavbar = () => {
       icon: <FaPlus />,
       children: [
         { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },
-        { path: '#', label: 'add news', icon: <HiNewspaper /> },
+        { path: '/news/add', label: 'add news', icon: <HiNewspaper /> },
       ],
     },
     { path: '/projects', label: 'projects', icon: <FaFile /> },
@@ -62,13 +62,15 @@ const MobileBottomNavbar = () => {
                     isCollapsed ? 'h-0 overflow-hidden p-0' : 'h-fit p-1 mb-3'
                   } transition-[height_0.3s_padding_0.3s]`}
                 >
-                  <div className="flex items-center">
-                    {' '}
-                    <span className="inline-flex w-10 h-10 justify-center items-center rounded-full bg-green-900 text-white mr-1">
-                      {child.icon}
-                    </span>
-                    <p>{child.label}</p>
-                  </div>
+                  <Link to={child.path} onClick={() => setCollapsed(true)}>
+                    <div className="flex items-center">
+                      {' '}
+                      <span className="inline-flex w-10 h-10 justify-center items-center rounded-full bg-green-900 text-white mr-1">
+                        {child.icon}
+                      </span>
+                      <p>{child.label}</p>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>

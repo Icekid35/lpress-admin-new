@@ -12,7 +12,7 @@ const Newspage = () => {
         View and manage all news items that have been published
       </p>
 
-      <div className="grid gap-5 lg:grid-cols-3 mt-10">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
         {news.map((news) => (
           <Link to={`/news/${news.id}`} key={news.id}>
             <NewsCard news={news} />
