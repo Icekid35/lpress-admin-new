@@ -115,6 +115,7 @@ const AddProjectPage = () => {
       <form
         onSubmit={handleSubmit((data) => {
           const loggedData = {
+            id: 0,
             ...data,
             uploadImages: { ...data.images },
           };

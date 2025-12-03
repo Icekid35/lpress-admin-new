@@ -48,6 +48,14 @@ const UserComplaintsPage = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="px-4">
+      <div className="mb-6">
+        <h1 className="font-semibold text-2xl sm:text-3xl text-green-950">
+          User Complaints
+        </h1>
+        <p className="text-gray-600">
+          Review and manage all submitted complaints in one place.
+        </p>
+      </div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>

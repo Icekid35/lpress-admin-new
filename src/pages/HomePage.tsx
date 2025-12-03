@@ -39,6 +39,7 @@ const HomePage = () => {
       shade: 'bg-green-100/80',
       text: 'text-green-800',
       iconColor: 'text-green-900',
+      path: '#',
     },
     {
       id: 'projects',
@@ -48,6 +49,7 @@ const HomePage = () => {
       shade: 'bg-purple-100',
       text: 'text-purple-800',
       iconColor: 'text-purple-900',
+      path: '/projects',
     },
     {
       id: 'news',
@@ -57,6 +59,7 @@ const HomePage = () => {
       shade: 'bg-indigo-100',
       text: 'text-indigo-800',
       iconColor: 'text-indigo-900',
+      path: '/news',
     },
     {
       id: 'complaints',
@@ -66,6 +69,7 @@ const HomePage = () => {
       shade: 'bg-amber-100',
       text: 'text-amber-800',
       iconColor: 'text-amber-900',
+      path: '/complaints',
     },
   ];
 
@@ -90,21 +94,22 @@ const HomePage = () => {
     <div className="px-4">
       <div className="grid mb-10 gap-7 grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
         {analytics.map(
-          ({ header, icon, shade, text, iconColor, value, id }) => (
-            <div
-              key={id}
-              className={`shadow ${shade} p-3 rounded-xl flex flex-col items-center justify-center`}
-            >
-              <div className="flex flex-col items-center justify-center">
-                <span
-                  className={`inline-flex w-14 h-14 text-2xl mb-2 rounded-full justify-center ${iconColor} items-center bg-gray-50/70 backdrop-blur-md`}
-                >
-                  {icon}
-                </span>
-                <h2 className={`font-semibold text-lg ${text}`}>{header}</h2>
+          ({ header, icon, shade, text, iconColor, value, id, path }) => (
+            <Link to={path} key={id}>
+              <div
+                className={`shadow ${shade} p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:transform-[scale(1.05)] transition-transform`}
+              >
+                <div className="flex flex-col items-center justify-center">
+                  <span
+                    className={`inline-flex w-14 h-14 text-2xl mb-2 rounded-full justify-center ${iconColor} items-center bg-gray-50/70 backdrop-blur-md`}
+                  >
+                    {icon}
+                  </span>
+                  <h2 className={`font-semibold text-lg ${text}`}>{header}</h2>
+                </div>
+                <p className={`${text} font-semibold text-2xl`}>{value}</p>
               </div>
-              <p className={`${text} font-semibold text-2xl`}>{value}</p>
-            </div>
+            </Link>
           )
         )}
       </div>

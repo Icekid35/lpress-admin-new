@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router';
-
 const complaint = {
   id: 1,
   name: 'John Doe',
