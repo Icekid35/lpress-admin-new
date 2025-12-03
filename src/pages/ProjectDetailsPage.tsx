@@ -50,7 +50,7 @@ The article concludes here. We encourage readers to stay tuned for more updates.
         <div className="flex mb-5 justify-between max-w-xl">
           <div>
             <p className="text-gray-600 font-semibold text-lg">Location</p>
-            <ProjectLocation location={{ city: 'minna', state: 'niger' }} />
+            <ProjectLocation location="minna, niger state" />
           </div>
           <div>
             <p className="text-gray-600 font-semibold text-lg">Status</p>

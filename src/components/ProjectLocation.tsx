@@ -1,7 +1,7 @@
 import { FaLocationDot } from 'react-icons/fa6';
 
 interface Props {
-  location: { state: string; city: string };
+  location: string;
 }
 
 const ProjectLocation = ({ location }: Props) => {
@@ -10,7 +10,7 @@ const ProjectLocation = ({ location }: Props) => {
       <span className="inline-block text-md mr-1 text-green-800">
         <FaLocationDot />
       </span>
-      <p>{`${location.city}, ${location.state} state`}</p>
+      <p>{location}</p>
     </div>
   );
 };

@@ -13,7 +13,11 @@ const DesktopSidebar = () => {
     { path: '/news', label: 'news management', icon: <FaRegNewspaper /> },
     { path: '/projects', label: 'projects management', icon: <FaFile /> },
     { path: '/complaints', label: 'complaints', icon: <MdReport /> },
-    { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },
+    {
+      path: '/projects/add',
+      label: 'add new project',
+      icon: <FaFileCirclePlus />,
+    },
     { path: '/news/add', label: 'add news', icon: <HiNewspaper /> },
   ];
 

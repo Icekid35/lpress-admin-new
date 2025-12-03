@@ -5,7 +5,7 @@ export interface Project {
   image: string;
   title: string;
   description: string;
-  location: { city: string; state: string };
+  location: string;
   status: 'in progress' | 'completed';
 }
 
@@ -15,7 +15,7 @@ const projects: Project[] = [
     image: govBago,
     title:
       'Niger State to End Direct Supply of Live Cows, Launch Meat Processing for Southwest Markets',
-    location: { city: 'gidan kwano', state: 'niger' },
+    location: 'gidan kwano, niger state',
     description: '123',
     status: 'in progress',
   },
@@ -24,7 +24,7 @@ const projects: Project[] = [
     image: govBago,
     title:
       'Niger State to End Direct Supply of Live Cows, Launch Meat Processing for Southwest Markets',
-    location: { city: 'gidan mangoro', state: 'niger' },
+    location: 'gidan mangoro, niger state',
     description: '123',
     status: 'completed',
   },
@@ -33,7 +33,7 @@ const projects: Project[] = [
     image: govBago,
     title:
       'Niger State to End Direct Supply of Live Cows, Launch Meat Processing for Southwest Markets',
-    location: { city: 'minna', state: 'niger' },
+    location: 'minna, niger state',
     description: '123',
     status: 'in progress',
   },
@@ -42,7 +42,7 @@ const projects: Project[] = [
     image: govBago,
     title:
       'Niger State to End Direct Supply of Live Cows, Launch Meat Processing for Southwest Markets',
-    location: { city: 'chanchaga', state: 'niger' },
+    location: 'chanchaga, niger state',
     description: '123',
     status: 'completed',
   },

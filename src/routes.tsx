@@ -8,6 +8,7 @@ import UserComplaintsPage from './pages/UserComplaintsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetailsPage from './pages/ProjectDetailsPage';
 import AddNewsPage from './pages/AddNewsPage';
+import AddProjectPage from './pages/AddProjectPage';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: '/projects', element: <ProjectsPage /> },
       { path: '/projects/:id', element: <ProjectDetailsPage /> },
       { path: '/news/add', element: <AddNewsPage /> },
+      { path: '/projects/add', element: <AddProjectPage /> },
     ],
   },
 ]);

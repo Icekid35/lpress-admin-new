@@ -5,35 +5,44 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 
 interface FormField {
-  id: 'title' | 'event' | 'eventDescription' | 'uploadImages';
+  id: 'title' | 'location' | 'description' | 'images' | 'status';
   label: string;
   type?: string;
   placeholder?: string;
+  options?: {
+    id: string;
+    membership: 'status';
+    label: string;
+  }[];
 }
 
-type NewsFormData = z.infer<typeof schema>;
-
 const schema = z.object({
-  title: z.string().min(10, 'Title is too short').max(100, 'Title is too long'),
-  event: z
+  title: z
+    .string()
+    .min(10, 'Title is too short.')
+    .max(100, 'Title is too long.'),
+  location: z
     .string()
     .min(10, 'Event name must contain at least 10 characters.')
-    .max(30, 'Event name is too long'),
-  eventDescription: z
+    .max(30, 'Event name is too long.'),
+  status: z.enum(['in progress', 'completed'], {
+    error: 'Please select a status.',
+  }),
+  description: z
     .string()
-    .min(20, 'Description is too short')
-    .max(2000, 'Description is too long'),
-  uploadImages: z
+    .min(20, 'Description is too short.')
+    .max(2000, 'Description is too long.'),
+  images: z
     .instanceof(FileList)
     .refine((files) => files.length > 0, 'At least one image is required.')
     .refine(
       (files) => files?.length <= 6,
-      'You can upload a maximum of 6 images'
+      'You can only upload a maximum of 6 images.'
     ),
 });
+type NewsFormData = z.infer<typeof schema>;
 
-const AddNewsPage = () => {
-  const date = new Date();
+const AddProjectPage = () => {
   const {
     register,
     handleSubmit,
@@ -44,33 +53,50 @@ const AddNewsPage = () => {
   } = useForm<NewsFormData>({
     defaultValues: {
       title: '',
-      event: '',
-      eventDescription: '',
-      uploadImages: undefined,
+      location: '',
+      status: undefined,
+      description: '',
+      images: undefined,
     },
     resolver: zodResolver(schema),
   });
-  const selectedImages = watch('uploadImages') || [];
+  const selectedImages = watch('images') || [];
 
   const formFields: FormField[] = [
     {
       id: 'title',
-      label: 'news title',
+      label: 'project title',
       type: 'text',
       placeholder: 'enter a catchy headline',
     },
     {
-      id: 'event',
-      label: 'event name',
+      id: 'location',
+      label: 'project location',
       type: 'text',
-      placeholder: 'e.g., Annual Tech Conference',
+      placeholder: 'e.g., minna, niger state',
     },
     {
-      id: 'eventDescription',
-      label: 'event description',
+      id: 'description',
+      label: 'project description',
     },
     {
-      id: 'uploadImages',
+      id: 'status',
+      label: 'project status',
+      options: [
+        {
+          id: 'projectComplete',
+          membership: 'status',
+          label: 'completed',
+        },
+        {
+          id: 'projectInProgress',
+          membership: 'status',
+          label: 'in progress',
+        },
+      ],
+    },
+    {
+      id: 'images',
       label: 'click to upload images',
     },
   ];
@@ -79,24 +105,18 @@ const AddNewsPage = () => {
     <div className="pb-28 px-4 lg:pb-10">
       <div className="mb-6">
         <h1 className="font-semibold text-2xl sm:text-3xl text-green-950">
-          Add News
+          Add Project
         </h1>
         <p className="text-gray-600">
-          Share the latest updates with your community. Fill out the form below
-          to create a new news item.
+          Create a new project by filling out the form below. Include details,
+          status, location, and images to keep your team informed
         </p>
       </div>
       <form
         onSubmit={handleSubmit((data) => {
           const loggedData = {
-            id: 1,
             ...data,
-            uploadImages: { ...data.uploadImages },
-            publishDate: date.toLocaleDateString(navigator.language, {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric',
-            }),
+            uploadImages: { ...data.images },
           };
           console.log(loggedData);
           reset();
@@ -104,7 +124,7 @@ const AddNewsPage = () => {
         className="rounded-lg shadow border p-4 max-w-3xl"
       >
         {formFields.map((field) =>
-          field.id === 'eventDescription' ? (
+          field.id === 'description' ? (
             <div key={field.id} className="container mb-5">
               <label className="block mb-1 text-md font-semibold text-gray-800">
                 {field.label}
@@ -122,11 +142,11 @@ const AddNewsPage = () => {
                 </p>
               )}
             </div>
-          ) : field.id === 'uploadImages' ? (
+          ) : field.id === 'images' ? (
             <div key={field.id} className="mb-5">
               <label
                 htmlFor="fileUpload"
-                className="mb-1 text-md text-gray-800 py-5 px-2 rounded-md border-[1.5px] border-dashed flex flex-col items-center"
+                className="text-md text-gray-800 py-5 px-2 rounded-md border-[1.5px] border-dashed flex flex-col items-center"
               >
                 <span className="inline-block text-3xl text-green-950 mb-3">
                   <FaFileArrowUp />
@@ -164,6 +184,40 @@ const AddNewsPage = () => {
                 </div>
               )}
             </div>
+          ) : field.id === 'status' ? (
+            <div className="mb-5" key={field.id}>
+              <div className="grid md:grid-cols-2 gap-2">
+                {field.options?.map((option) => (
+                  <div className="md:mb-none" key={option.id}>
+                    <label
+                      htmlFor={option.id}
+                      className="inline-block w-full p-2 rounded-sm ring-1 ring-gray-400 has-checked:ring-1 has-checked:ring-green-800 transition-all duration-200 has-checked:bg-linear-30 from-green-50/65 to-green-50/50"
+                    >
+                      <div className="flex items-center">
+                        <div className="mr-2 rounded-full flex justify-center items-center w-5 h-5 border-[1.5px] border-gray-400 has-checked:border-green-800 transition-all duration-200">
+                          <div className="w-3 h-3 rounded-full bg-gray-200 has-checked:bg-green-800 transition-all duration-200">
+                            <input
+                              {...register(option.membership)}
+                              type="radio"
+                              id={option.id}
+                              className="hidden"
+                              name={option.membership}
+                              value={option.label}
+                            />
+                          </div>
+                        </div>
+                        <p className="font-semibold text-sm">{option.label}</p>
+                      </div>
+                    </label>
+                  </div>
+                ))}
+              </div>
+              {errors[field.id] && (
+                <p className="text-xs text-red-700 sm:text-sm">
+                  {errors[field.id]?.message}
+                </p>
+              )}
+            </div>
           ) : (
             <div key={field.id} className="mb-5">
               <label
@@ -199,4 +253,4 @@ const AddNewsPage = () => {
   );
 };
 
-export default AddNewsPage;
+export default AddProjectPage;

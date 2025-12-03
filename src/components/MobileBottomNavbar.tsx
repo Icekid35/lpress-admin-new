@@ -15,7 +15,11 @@ const MobileBottomNavbar = () => {
     {
       icon: <FaPlus />,
       children: [
-        { path: '#', label: 'add new project', icon: <FaFileCirclePlus /> },
+        {
+          path: '/projects/add',
+          label: 'add new project',
+          icon: <FaFileCirclePlus />,
+        },
         { path: '/news/add', label: 'add news', icon: <HiNewspaper /> },
       ],
     },
