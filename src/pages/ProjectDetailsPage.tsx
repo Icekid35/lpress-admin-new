@@ -113,7 +113,7 @@ const ProjectDetailsPage = () => {
             <p className="text-gray-600">Project overview and progress</p>
           </div>
           <div className="mb-3 mt-3 lg:mt-0">
-            <ProjectStatusBadge status={project.status} />
+            <ProjectStatusBadge status={project.status as 'in progress' | 'completed'} />
           </div>
         </div>
         <div className="flex mb-5 justify-between max-w-xl">
