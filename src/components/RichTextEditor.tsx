@@ -6,7 +6,6 @@ import {
   FaListUl,
   FaListOl,
   FaLink,
-  FaImage,
   FaAlignLeft,
   FaAlignCenter,
   FaAlignRight,
@@ -35,7 +34,6 @@ interface RichTextEditorProps {
   onChange: (value: string) => void;
   placeholder?: string;
   height?: string;
-  showImageButton?: boolean;
 }
 
 const RichTextEditor = ({
@@ -43,7 +41,6 @@ const RichTextEditor = ({
   onChange,
   placeholder = "Write your content here...",
   height = "400px",
-  showImageButton = false,
 }: RichTextEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [showLinkModal, setShowLinkModal] = useState(false);
@@ -482,16 +479,6 @@ const RichTextEditor = ({
             >
               <FaLink />
             </button>
-            {showImageButton && (
-              <button
-                type="button"
-                onClick={() => setShowImageModal(true)}
-                className="p-2 hover:bg-green-50 hover:text-green-700 rounded transition-colors"
-                title="Insert Image"
-              >
-                <FaImage />
-              </button>
-            )}
             <button
               type="button"
               onClick={() => executeCommand("formatBlock", "pre")}

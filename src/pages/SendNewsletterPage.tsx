@@ -11,6 +11,7 @@ import {
   FaCheck,
   FaTimes,
   FaLayerGroup,
+  FaDownload,
 } from "react-icons/fa";
 import { emailTemplates, getAllCategories } from "@/data/emailTemplates";
 
@@ -130,6 +131,32 @@ const SendNewsletterPage = () => {
     }
   };
 
+  const downloadSubscribers = async () => {
+    try {
+      const response = await subscribersApi.getAll(true);
+      if (response.success && response.data) {
+        const csvContent = [
+          ['Email', 'Subscribed At'].join(','),
+          ...response.data.map((sub: any) => 
+            [sub.email, new Date(sub.created_at).toLocaleString()].join(',')
+          )
+        ].join('\n');
+        
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `newsletter-subscribers-${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      alert('Failed to download subscribers list');
+    }
+  };
+
   const categories = ["All", ...getAllCategories()];
   const filteredTemplates =
     selectedCategory === "All"
@@ -139,9 +166,19 @@ const SendNewsletterPage = () => {
   return (
     <div className="pb-28 px-4 lg:pb-10 max-w-6xl mx-auto">
       <div className="mb-6">
-        <h1 className="font-semibold text-2xl sm:text-3xl text-green-950 mb-2">
-          Send Newsletter
-        </h1>
+        <div className="flex items-start justify-between mb-2">
+          <h1 className="font-semibold text-2xl sm:text-3xl text-green-950">
+            Send Newsletter
+          </h1>
+          <button
+            type="button"
+            onClick={downloadSubscribers}
+            className="flex items-center gap-2 px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colors text-sm font-medium"
+          >
+            <FaDownload />
+            Download CSV
+          </button>
+        </div>
         <p className="text-gray-600">
           Create and send professional newsletters to your subscribers. Current
           subscribers:{" "}
@@ -191,9 +228,8 @@ const SendNewsletterPage = () => {
                 <RichTextEditor
                   value={field.value || ""}
                   onChange={field.onChange}
-                  placeholder="Write your newsletter content here. Use the toolbar to format your text, add images, links, and more..."
+                  placeholder="Write your newsletter content here. Use the toolbar to format your text, add links, and more..."
                   height="500px"
-                  showImageButton={true}
                 />
               )}
             />
