@@ -68,10 +68,10 @@ const HomePage = () => {
           }));
         }
 
-        if (subscribersCountRes.success && subscribersCountRes.data) {
+        if (subscribersCountRes.success && subscribersCountRes.count !== undefined) {
           setStats((prev) => ({
             ...prev,
-            subscribers: subscribersCountRes.data?.count || 0,
+            subscribers: subscribersCountRes.count || 0,
           }));
         }
 

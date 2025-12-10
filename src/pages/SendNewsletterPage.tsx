@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -59,13 +59,13 @@ const SendNewsletterPage = () => {
   const htmlContent = watch("htmlContent");
   const subject = watch("subject");
 
-  useState(() => {
+  useEffect(() => {
     subscribersApi.getCount(true).then((response) => {
-      if (response.data) {
-        setSubscriberCount(response.data.count);
+      if (response.success && response.count !== undefined) {
+        setSubscriberCount(response.count);
       }
     });
-  });
+  }, []);
 
   const onSubmit = async (data: NewsletterFormData) => {
     if (data.recipientType === "test" && !data.testEmail) {
@@ -136,24 +136,26 @@ const SendNewsletterPage = () => {
       const response = await subscribersApi.getAll(true);
       if (response.success && response.data) {
         const csvContent = [
-          ['Email', 'Subscribed At'].join(','),
-          ...response.data.map((sub: any) => 
-            [sub.email, new Date(sub.created_at).toLocaleString()].join(',')
-          )
-        ].join('\n');
-        
-        const blob = new Blob([csvContent], { type: 'text/csv' });
+          ["Email", "Subscribed At"].join(","),
+          ...response.data.map((sub: any) =>
+            [sub.email, new Date(sub.created_at).toLocaleString()].join(",")
+          ),
+        ].join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv" });
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = `newsletter-subscribers-${new Date().toISOString().split('T')[0]}.csv`;
+        a.download = `newsletter-subscribers-${
+          new Date().toISOString().split("T")[0]
+        }.csv`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
       }
     } catch (error) {
-      alert('Failed to download subscribers list');
+      alert("Failed to download subscribers list");
     }
   };
 
