@@ -40,7 +40,7 @@ export default function LoginPage() {
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">LPRES Admin</h1>
           <p className="text-gray-600">
-            Local Planning Research and Statistics
+            Livestock Productivity & Resilience Project
           </p>
         </div>
 

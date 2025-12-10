@@ -33,7 +33,7 @@ interface Complaint {
   name: string;
   email: string;
   subject: string;
-  message: string;
+  description: string;
   created_at: string;
 }
 
@@ -68,7 +68,10 @@ const HomePage = () => {
           }));
         }
 
-        if (subscribersCountRes.success && subscribersCountRes.count !== undefined) {
+        if (
+          subscribersCountRes.success &&
+          subscribersCountRes.count !== undefined
+        ) {
           setStats((prev) => ({
             ...prev,
             subscribers: subscribersCountRes.count || 0,

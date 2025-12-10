@@ -468,7 +468,7 @@ const SendNewsletterPage = () => {
                   LPRES Administration
                 </h1>
                 <p className="text-green-100 text-sm mt-2 mb-0">
-                  Local Planning Research and Statistics
+                  Livestock Productivity & Resilience Project
                 </p>
               </div>
 

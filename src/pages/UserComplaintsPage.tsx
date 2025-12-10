@@ -26,7 +26,7 @@ interface Complaint {
   name: string;
   email: string;
   subject: string;
-  message: string;
+  description: string;
   created_at: string;
 }
 

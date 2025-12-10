@@ -7,7 +7,7 @@ interface Complaint {
   name: string;
   email: string;
   subject: string;
-  message: string;
+  description: string;
   created_at: string;
 }
 
@@ -75,7 +75,7 @@ const ComplaintDetailsPage = () => {
             <h2 className="font-semibold mb-2 text-xl">
               Complaint Description
             </h2>
-            <p className="text-gray-800 tracking-wide">{complaint.message}</p>
+            <p className="text-gray-800 tracking-wide">{complaint.description}</p>
           </div>
           <div className="py-3 border-t-2">
             <div className="mb-2">
